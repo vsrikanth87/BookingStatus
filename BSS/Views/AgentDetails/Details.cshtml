@@ -1,0 +1,37 @@
+﻿@model BSS.Models.AgentDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AgentDetails</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentContactNo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AgentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

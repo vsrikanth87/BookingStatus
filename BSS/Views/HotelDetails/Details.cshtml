@@ -1,0 +1,37 @@
+﻿@model BSS.Models.HotelDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>HotelDetails</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HotelName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HotelName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HotelAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HotelAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HotelContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HotelContactNo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.HotelId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

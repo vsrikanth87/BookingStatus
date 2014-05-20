@@ -1,0 +1,158 @@
+﻿@model IEnumerable<BSS.Models.BookingArrived>
+@{
+    ViewBag.Title = "Current Booking Status";
+    Layout = "~/Views/Shared/Temp.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout("RefreshPage()", 60000);
+    })
+    function RefreshPage() {
+        location.reload();
+    }
+
+    $(function () {
+        var on = false;
+        window.setInterval(function () {
+            on = !on;
+            if (on) {
+                $('.invalid').addClass('invalid-blink')
+            } else {
+                $('.invalid-blink').removeClass('invalid-blink')
+            }
+        }, 500);
+    });
+
+</script>
+<style>
+    .invalid-blink
+    {
+        background-color: Aqua;
+    }
+</style>
+@{
+    <div class="Container">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDateTime)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.BookingArrivedEnquiredTime)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.QuotationSendDateTime)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.QuotationSendTime)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDetails)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.TravelDate)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.AgentId)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.ConsultantId)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.TourPlanRefrence)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.HotelId)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.BookingStatus)
+                        </th>
+                        <th style="text-align: center">
+                            @Html.DisplayNameFor(model => model.ConfirmationDate)
+                        </th>
+                 
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (@item.BookingStatus == "CF")
+                        {
+                        @:<tr style="background-color:#A3C266; color:Black;">
+                        }
+        
+                        else if (@item.BookingStatus == "CX")
+                        {
+                        @:<tr style="background-color:#FF0000; color:White;">
+                        }
+                        else if (@item.BookingStatus == "QN")
+                        {
+                        @:<tr style="background-color:#FFD633; color:Black;">
+                        }
+                        else if (@item.BookingStatus.Equals("--"))
+                        {
+                        @:<tr style="background-color:#FFB599; color:Blue">
+                        }
+                        else
+                        {
+                        @:<tr style="background-color:White">
+                        }
+        
+                                   <td>
+            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDateTime)
+        </td>
+                        if (DateTime.Parse(item.BookingArrivedEnquiredTime).AddMinutes(20) <= DateTime.Now && item.QuotationSendTime == null)
+                        {
+           <td class="invalid">
+                @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredTime)
+            </td>
+                        }
+                        else
+                        {
+              <td>
+               @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredTime)
+               </td>
+                        }
+         <td>
+            @Html.DisplayFor(modelItem => item.QuotationSendDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuotationSendTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentDetail.AgentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsultantDetail.ConsultantName)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.TourPlanRefrence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HotelDetail.HotelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmationDate)
+        </td>
+  
+         @:</tr>
+}
+</tbody>
+</table>
+</div>
+</div>
+    }
+
+

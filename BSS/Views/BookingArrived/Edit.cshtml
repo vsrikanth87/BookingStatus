@@ -1,0 +1,144 @@
+﻿@model BSS.Models.BookingArrived
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    dictionary.Add("--", "--");
+    dictionary.Add("CF", "CF");
+    dictionary.Add("QN", "QN");
+    dictionary.Add("CX", "CX");
+    SelectList list = new SelectList(dictionary, "value", "key");
+}
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+    $(function () {
+        $("#area1").find("#BookingArrivedEnquiredDateTime").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#area2").find("#TravelDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#area3").find("#QuotationSendDateTime").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#area4").find("#ConfirmationDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BookingReceived</legend>
+
+        @Html.HiddenFor(model => model.BookingArrivedId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingArrivedEnquiredDateTime)
+        </div>
+        <div id="area1" class="area1">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingArrivedEnquiredDateTime)
+            @Html.ValidationMessageFor(model => model.BookingArrivedEnquiredDateTime)
+        </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingArrivedEnquiredTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingArrivedEnquiredTime)
+            @Html.ValidationMessageFor(model => model.BookingArrivedEnquiredTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingArrivedEnquiredDetails)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingArrivedEnquiredDetails)
+            @Html.ValidationMessageFor(model => model.BookingArrivedEnquiredDetails)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TravelDate)
+        </div>
+        <div id="area2" class="area2">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TravelDate)
+            @Html.ValidationMessageFor(model => model.TravelDate)
+        </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentId, "AgentDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AgentId")
+            @Html.ValidationMessageFor(model => model.AgentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConsultantId, "ConsultantDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ConsultantId")
+            @Html.ValidationMessageFor(model => model.ConsultantId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuotationSendDateTime)
+        </div>
+        <div id="area3" class="area3">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QuotationSendDateTime)
+            @Html.ValidationMessageFor(model => model.QuotationSendDateTime)
+        </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuotationSendTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QuotationSendTime)
+            @Html.ValidationMessageFor(model => model.QuotationSendTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TourPlanRefrence)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TourPlanRefrence)
+            @Html.ValidationMessageFor(model => model.TourPlanRefrence)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HotelId, "HotelDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("HotelId")
+            @Html.ValidationMessageFor(model => model.HotelId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingStatus", list)
+           @* @Html.EditorFor(model => model.BookingStatus)*@
+            @Html.ValidationMessageFor(model => model.BookingStatus)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmationDate)
+        </div>
+        <div id="area4" class="area4">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmationDate)
+            @Html.ValidationMessageFor(model => model.ConfirmationDate)
+        </div>
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

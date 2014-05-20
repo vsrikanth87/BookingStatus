@@ -1,0 +1,112 @@
+﻿@model IEnumerable<BSS.Models.BookingReceived>
+@{
+    ViewBag.Title = "Report1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Report1</h2>
+@*
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        BookingArrivedEnquiredDateTime
+                    </th>
+                    <th>
+                        BookingArrivedEnquiredTime
+                    </th>
+                    <th>
+                        QuotationSendDateTime
+                    </th>
+                    <th>
+                        QuotationSendTime
+                    </th>
+                    <th>
+                        BookingArrivedEnquiredDetails
+                    </th>
+                    <th>
+                        TravelDate
+                    </th>
+                    <th>
+                        AgentId
+                    </th>
+                    <th>
+                        ConsultantId
+                    </th>
+                     <th>
+                        BookingType
+                    </th>
+                    <th>
+                        TourPlanRefrence
+                    </th>
+                    <th>
+                        HotelId
+                    </th>
+                    <th>
+                        BookingStatus
+                    </th>
+                    <th>
+                        ConfirmationDate
+                    </th>
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredTime)
+                        </td>
+                          <td>
+                            @Html.DisplayFor(modelItem => item.QuotationSendDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuotationSendTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDetails)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TravelDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgentDetail.AgentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConsultantDetail.ConsultantName)
+                        </td>
+                          <td>
+                            @Html.DisplayFor(modelItem => item.BookingType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TourPlanRefrence)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HotelDetail.HotelName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConfirmationDate)
+                        </td>
+                        @* <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingArrivedId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingArrivedId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingArrivedId })
+        </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

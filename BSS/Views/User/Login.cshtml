@@ -1,0 +1,49 @@
+﻿@model BSS.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
+}
+<h2>
+    Login</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Login</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)  
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+       @* <div class="editor-label">
+            @Html.LabelFor(model => model.UserType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.UserType, new SelectList(ViewBag.UserTypes, "UserTypeId", "UserTypeName"), "Select")
+             @Html.ValidationMessageFor(model => model.UserType)
+        </div>*@
+        <p>
+            <input type="submit" value="Login" />
+        </p>
+        <p>
+          @*  @Html.ActionLink("Register", "Register", "User") if you don't have a local account.*@
+           @* @Html.ActionLink("Register", "Create") if you don't have a local account.*@
+        </p>
+    </fieldset>
+}
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

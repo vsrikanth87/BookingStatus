@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<BSS.Models.AgentDetails>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Agent Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Agent Details</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                       Name
+                    </th>
+                    <th>
+                       Address
+                    </th>
+                    <th>
+                        Contact No
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgentAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgentContactNo)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.AgentId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.AgentId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort}))
+    </div>
+}

@@ -1,0 +1,80 @@
+﻿@model BSS.Models.SearchParameterModel1
+@{
+    ViewBag.Title = "Custom Report Viewer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jqueryui")
+
+<script type="text/javascript">
+    $(function () {
+        $("#area1").find("#BookingArrivedEnquiredToDateTime").datepicker();
+        $("#area2").find("#BookingArrivedEnquiredFromDateTime").datepicker();
+    });
+</script>
+
+
+<script type="text/javascript">
+</script>
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<section id="ReportViewer">
+    <h4>Custom Report.</h4>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+          <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery-1.8.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.ui.core.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.ui.datepicker.js" type="text/javascript"></script>
+    
+    <link href="../../Content/demos.css" rel="stylesheet" type="text/css" />
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <fieldset>
+            <legend>Report 1</legend>
+            <ol>
+                <li>
+                 <div id="area1" class="area1">
+                   Booking Arrived Enquired To Date
+                  
+                    @Html.TextBoxFor(m => m.BookingArrivedEnquiredToDateTime)
+                    @Html.ValidationMessageFor(m => m.BookingArrivedEnquiredToDateTime)
+                    </div>
+                     <div id="area2" class="area1">
+                    Booking Arrived Enquired From Date
+                    @Html.TextBoxFor(m => m.BookingArrivedEnquiredFromDateTime)
+                    @Html.ValidationMessageFor(m => m.BookingArrivedEnquiredFromDateTime)
+                    </div>
+                </li>
+            </ol>
+            <input type="submit" id="btnSubmit" value="View Report" />
+        </fieldset>
+    }
+</section>
+@if (Model != null)
+{
+    <section class="social" id="ReportDisplayPanel">
+        <h4>Report Viewer Section.</h4>
+        <div>
+        @Html.ActionLink("Download Report in PDF Format", "DownloadReport", new { bookingarrivedrequesttodatetime = Model.BookingArrivedEnquiredToDateTime, bookingarrivedrequestfromdatetime = Model.BookingArrivedEnquiredFromDateTime, format = "PDF" })
+        </div>
+        <br />
+        <div>
+        @Html.ActionLink("Download Report in Excel Format", "DownloadReport", new { bookingarrivedrequesttodatetime = Model.BookingArrivedEnquiredToDateTime, bookingarrivedrequestfromdatetime = Model.BookingArrivedEnquiredFromDateTime, format = "Excel" })
+        </div>
+       
+        <div>
+        <img src="@Url.Action("GenerateAndDisplayReport", "BookingReceived", new { bookingarrivedrequesttodatetime = Model.BookingArrivedEnquiredToDateTime, bookingarrivedrequestfromdatetime = Model.BookingArrivedEnquiredFromDateTime, format = Model.Format })"   />
+        </div>
+        <br />
+    </section>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

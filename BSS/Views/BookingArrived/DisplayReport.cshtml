@@ -1,0 +1,46 @@
+﻿@model BSS.Models.BookingArrived
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    Show Report</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+     <fieldset>
+            <legend>Report 1</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(model => model.BookingArrivedEnquiredDateTime)
+                    @Html.TextBoxFor(model => model.BookingArrivedEnquiredDateTime)
+                    @Html.ValidationMessageFor(model => model.BookingArrivedEnquiredDateTime)
+
+                </li>
+            </ol>
+           @* <input type="submit" class id="btnSubmit" value="View Report" />*@
+        </fieldset>
+}
+
+
+<div style="padding: 10px; border: 1px solid black">
+    <div>
+       @*<a href="@Url.Action("Report2", new {bookingarriveddate = "20/01/2014", id = "PDF" })">Click here to Get Report in PDF Format</a></div>*@
+        <a href="@Url.Action("Report2", new { bookingarriveddate = Model.BookingArrivedEnquiredDateTime, id = "PDF" })">Click here to Get Report in PDF Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Excel" })">Click here to Get Report in Excel
+            Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Word" })">Click here to Get Report in Word Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Image" })">Click here to Get Report in Image
+            Format</a></div>
+</div>
+

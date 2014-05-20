@@ -1,0 +1,118 @@
+﻿@model BSS.Models.BookingReceived
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    dictionary.Add("--", "--");
+    dictionary.Add("CF", "CF");
+    dictionary.Add("QN", "QN");
+    dictionary.Add("CX", "CX");
+    SelectList list = new SelectList(dictionary, "value", "key");
+    Dictionary<string, string> dictionary1 = new Dictionary<string, string>();
+    dictionary1.Add("FIT", "FIT");
+    dictionary1.Add("BAR", "BAR");
+    SelectList list1 = new SelectList(dictionary1, "value", "key");
+}
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BookingReceived</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingArrivedEnquiredDateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingArrivedEnquiredTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingArrivedEnquiredTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDetails)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingArrivedEnquiredDetails)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TravelDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TravelDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentDetail.AgentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConsultantId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConsultantDetail.ConsultantName)
+    </div>
+
+     <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuotationSendDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuotationSendDateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuotationSendTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuotationSendTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TourPlanRefrence)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TourPlanRefrence)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HotelId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HotelDetail.HotelName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingStatus)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingStatus)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConfirmationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConfirmationDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingArrivedId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

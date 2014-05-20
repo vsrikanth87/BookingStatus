@@ -1,0 +1,163 @@
+﻿@model PagedList.IPagedList<BSS.Models.BookingArrived>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    dictionary.Add("--", "--");
+    dictionary.Add("BookingArrivedReceivedDate", "BookingArrivedEnquiredDateTime");
+    //dictionary.Add("EnquiryTimeReceived", "BookingArrivedEnquiredDateTime");
+    dictionary.Add("EnquiryDetails", "BookingArrivedEnquiredDetails");
+    dictionary.Add("TravelDate", "TravelDate");
+    dictionary.Add("Agent", "AgentName");
+    dictionary.Add("Consultant", "ConsultantName");
+    dictionary.Add("QuotationSendDateTime", "QuotationSendDateTime");
+    //dictionary.Add("QuotationSendDateTime", "QuotationSendDateTime");
+    dictionary.Add("TourPlanRefrence", "TourPlanRefrence");
+    dictionary.Add("Hotel", "HotelName");
+    dictionary.Add("BookingStatus", "BookingStatus");
+    dictionary.Add("DateConfirmed", "ConfirmationDate");
+    SelectList list = new SelectList(dictionary, "value", "key");
+}
+<h2>
+    Report</h2>
+@using (Html.BeginForm("Report", "BookingArrived", FormMethod.Post))
+{    
+    <p>
+        SearchBy: @Html.DropDownList("SearchBy", list)
+        @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p> 
+}
+@{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="text-align: center">
+                       Enq Arvd Date
+                           @* @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDateTime)*@
+                        </th>
+                        <th style="text-align: center">
+                        Enq Rcvd Time 
+                           @* @Html.DisplayNameFor(model => model.BookingArrivedEnquiredTime)*@
+                        </th>
+                         <th style="text-align: center">
+                        Quot Sent Date 	
+                         @*   @Html.DisplayNameFor(model => model.QuotationSendDateTime)*@
+                        </th>
+                        <th style="text-align: center">
+                        Quot Sent Time
+                           @* @Html.DisplayNameFor(model => model.QuotationSendTime)*@
+                        </th>
+                        <th style="text-align: center">
+                        Enq Details 
+                           @* @Html.DisplayNameFor(model => model.BookingArrivedEnquiredDetails)*@
+                        </th>
+                        <th style="text-align: center">
+                        Travel Date
+                            @*@Html.DisplayNameFor(model => model.TravelDate)*@
+                        </th>
+                        <th style="text-align: center">
+                         Agent
+                           @* @Html.DisplayNameFor(model => model.AgentId)*@
+                        </th>
+                        <th style="text-align: center">
+                          CNSLT
+                       @*     @Html.DisplayNameFor(model => model.ConsultantId)*@
+                        </th>
+                       
+                        <th style="text-align: center">
+                        TP Ref
+                            @*@Html.DisplayNameFor(model => model.TourPlanRefrence)*@
+                        </th>
+                        <th style="text-align: center">
+                        Hotel
+                           @* @Html.DisplayNameFor(model => model.HotelId)*@
+                        </th>
+                        <th style="text-align: center">
+                        BKNG ST
+                            @*@Html.DisplayNameFor(model => model.BookingStatus)*@
+                        </th>
+                        <th style="text-align: center">
+                        Date CF	
+                            @*@Html.DisplayNameFor(model => model.ConfirmationDate)*@
+                        </th>
+                     @*   <th>
+                        Action
+                        </th>*@
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredTime)
+                        </td>
+                          <td>
+                            @Html.DisplayFor(modelItem => item.QuotationSendDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuotationSendTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingArrivedEnquiredDetails)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TravelDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgentDetail.AgentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConsultantDetail.ConsultantName)
+                        </td>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TourPlanRefrence)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HotelDetail.HotelName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConfirmationDate)
+                        </td>
+                        @*   <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingArrivedId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingArrivedId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingArrivedId })
+        </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Report", new { page, sortOrder = ViewBag.CurrentSort}))
+    </div>
+}
+<div style="padding: 10px; border: 1px solid black">
+    <div>
+        <a href="@Url.Action("Report1", new { id = "PDF" })">Click here to Get Report in PDF
+            Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Excel" })">Click here to Get Report in Excel
+            Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Word" })">Click here to Get Report in Word
+            Format</a></div>
+    <br />
+    <div>
+        <a href="@Url.Action("Report1", new { id = "Image" })">Click here to Get Report in Image
+            Format</a></div>
+</div>

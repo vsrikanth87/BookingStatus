@@ -1,0 +1,54 @@
+﻿@model BSS.Models.AgentDetails
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AgentDetails</legend>
+
+        @Html.HiddenFor(model => model.AgentId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgentName)
+            @Html.ValidationMessageFor(model => model.AgentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgentAddress)
+            @Html.ValidationMessageFor(model => model.AgentAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgentContactNo)
+            @Html.ValidationMessageFor(model => model.AgentContactNo)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

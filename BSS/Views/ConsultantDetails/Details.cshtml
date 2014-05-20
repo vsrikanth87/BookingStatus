@@ -1,0 +1,37 @@
+﻿@model BSS.Models.ConsultantDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ConsultantDetails</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConsultantName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConsultantName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConsultantAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConsultantAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConsultantContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConsultantContactNo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ConsultantId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

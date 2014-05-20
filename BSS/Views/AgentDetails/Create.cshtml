@@ -1,0 +1,53 @@
+﻿@model BSS.Models.AgentDetails
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div>
+    <fieldset>
+        <legend>AgentDetails</legend>
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.AgentName)
+        </div>
+         <div class="editor-label">
+            @Html.EditorFor(model => model.AgentName)
+            @Html.ValidationMessageFor(model => model.AgentName)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.AgentAddress)
+        </div>
+          <div class="editor-label">
+            @Html.EditorFor(model => model.AgentAddress)
+            @Html.ValidationMessageFor(model => model.AgentAddress)
+        </div>
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.AgentContactNo)
+        </div>
+          <div class="editor-label">
+            @Html.EditorFor(model => model.AgentContactNo)
+            @Html.ValidationMessageFor(model => model.AgentContactNo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
